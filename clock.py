@@ -63,7 +63,7 @@ while(1):
         scroller=64
 
     thetime = currentDT.strftime("%l"+(":" if tick else " ")+"%M")
-    thetime=thetime[1:]
+    thetime=str.lstrip(thetime)
     sizeoftime = (25 - (len(thetime)* 9)/2)
     
     #theday = currentDT.strftime("%A")
@@ -73,11 +73,11 @@ while(1):
       
     # Load up the font (use absolute paths so script can be invoked from /etc/rc.local correctly)
 
-    graphics.DrawText(MyOffsetCanvas, font, scroller, 28, RED, fulldate)
+    graphics.DrawText(MyOffsetCanvas, font, scroller, 28, BLUE, fulldate)
 
 
     font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/9x18B.bdf")
-    graphics.DrawText(MyOffsetCanvas, font, sizeoftime, 14, BLUE, thetime)
+    graphics.DrawText(MyOffsetCanvas, font, sizeoftime, 14, RED, thetime)
 
     font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/6x9.bdf")
     graphics.DrawText(MyOffsetCanvas, font, 50, 14, GREEN, pmam)
