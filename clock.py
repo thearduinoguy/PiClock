@@ -61,6 +61,13 @@ while(1):
         scroller = 64
 
     thetime = currentDT.strftime("%l"+(":" if tick else " ")+"%M")
+
+    thetime=str.lstrip(thetime)
+    sizeoftime = (25 - (len(thetime)* 9)/2)
+    
+    #theday = currentDT.strftime("%A")
+    #sizeofday = (32 - (len(theday)* 7)/2)
+    
     thetime = thetime[1:]
     sizeoftime = (25 - (len(thetime) * 9)/2)
 
@@ -68,6 +75,8 @@ while(1):
     # sizeofday = (32 - (len(theday)* 7)/2)
 
     pmam = currentDT.strftime("%p")
+
+    graphics.DrawText(MyOffsetCanvas, font, scroller, 28, BLUE, fulldate)
 
     # Load up the font (use absolute paths so script can be invoked
     # from /etc/rc.local correctly)
