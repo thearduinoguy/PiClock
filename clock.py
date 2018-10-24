@@ -48,9 +48,6 @@ loadFont('6x9')
 # Create the buffer canvas
 MyOffsetCanvas = MyMatrix.CreateFrameCanvas()
 while(1):
-    font = graphics.Font()
-    font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/7x13B.bdf")
-
     currentDT = datetime.datetime.now()
 
     fulldate = currentDT.strftime("%d-%m-%y  %A")
@@ -86,11 +83,9 @@ while(1):
     graphics.DrawText(MyOffsetCanvas, fonts['7x13B'], scroller, 28, BLUE,
                       fulldate)
 
-    font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/9x18B.bdf")
     graphics.DrawText(MyOffsetCanvas, fonts['9x18B'], sizeoftime, 14, RED,
                       thetime)
 
-    font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/6x9.bdf")
     graphics.DrawText(MyOffsetCanvas, fonts['6x9'], 50, 14, GREEN, pmam)
 
     MyOffsetCanvas = MyMatrix.SwapOnVSync(MyOffsetCanvas)
