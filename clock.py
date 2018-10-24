@@ -6,6 +6,14 @@ import datetime
 from rgbmatrix import graphics
 from rgbmatrix import RGBMatrix
 
+
+# Load up the font (use absolute paths so script can be invoked
+# from /etc/rc.local correctly)
+def loadFont(font):
+    global fonts
+    fonts[font] = graphics.Font()
+    fonts[font].LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/" + font + ".bdf")
+
 flip = True
 tick = True
 scroller = 64
@@ -31,6 +39,11 @@ lastDateFlip = int(round(time.time() * 1000))
 lastSecondFlip = int(round(time.time() * 1000))
 lastScrollTick = int(round(time.time() * 1000))
 
+fonts = {}
+
+loadFont('7x13B')
+loadFont('9x18B')
+loadFont('6x9')
 
 # Create the buffer canvas
 MyOffsetCanvas = MyMatrix.CreateFrameCanvas()
@@ -70,18 +83,16 @@ while(1):
 
     pmam = currentDT.strftime("%p")
 
-    graphics.DrawText(MyOffsetCanvas, font, scroller, 28, BLUE, fulldate)
-
-    # Load up the font (use absolute paths so script can be invoked
-    # from /etc/rc.local correctly)
-
-    graphics.DrawText(MyOffsetCanvas, font, scroller, 28, BLUE, fulldate)
+    graphics.DrawText(MyOffsetCanvas, fonts['7x13B'], scroller, 28, BLUE,
+                      fulldate)
 
     font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/9x18B.bdf")
-    graphics.DrawText(MyOffsetCanvas, font, sizeoftime, 14, RED, thetime)
+    graphics.DrawText(MyOffsetCanvas, fonts['9x18B'], sizeoftime, 14, RED,
+                      thetime)
 
     font.LoadFont("/home/pi/rpi-rgb-led-matrix/fonts/6x9.bdf")
-    graphics.DrawText(MyOffsetCanvas, font, 50, 14, GREEN, pmam)
+    graphics.DrawText(MyOffsetCanvas, fonts['6x9'], 50, 14, GREEN, pmam)
 
     MyOffsetCanvas = MyMatrix.SwapOnVSync(MyOffsetCanvas)
     MyOffsetCanvas.Clear()
+    time.sleep(0.05)
