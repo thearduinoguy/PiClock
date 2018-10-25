@@ -62,14 +62,8 @@ while(1):
 
     thetime = currentDT.strftime("%l"+(":" if tick else " ")+"%M")
 
-    thetime=str.lstrip(thetime)
-    sizeoftime = (25 - (len(thetime)* 9)/2)
-    
-    #theday = currentDT.strftime("%A")
-    #sizeofday = (32 - (len(theday)* 7)/2)
-    
-    thetime = thetime[1:]
-    sizeoftime = (25 - (len(thetime) * 9)/2)
+    thetime = str.lstrip(thetime)
+    sizeoftime = (25 - (len(thetime) * 9) / 2)
 
     # theday = currentDT.strftime("%A")
     # sizeofday = (32 - (len(theday)* 7)/2)
