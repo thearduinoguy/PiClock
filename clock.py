@@ -51,11 +51,13 @@ while(1):
     currentDT = datetime.datetime.now()
 
     if currentDT.hour < 23:
+        time.sleep(0.05)
         scrollColour = BLUE
         fulldate = currentDT.strftime("%d-%m-%y  %A")
         if currentDT.day < 10:
             fulldate = fulldate[1:]
     else:
+        time.sleep(0.025)
         scrollColour = PURPLE
         fulldate = "GO HOME!!!"
 
@@ -95,4 +97,3 @@ while(1):
 
     MyOffsetCanvas = MyMatrix.SwapOnVSync(MyOffsetCanvas)
     MyOffsetCanvas.Clear()
-    time.sleep(0.05)
