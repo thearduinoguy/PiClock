@@ -50,9 +50,16 @@ MyOffsetCanvas = MyMatrix.CreateFrameCanvas()
 while(1):
     currentDT = datetime.datetime.now()
 
-    fulldate = currentDT.strftime("%d-%m-%y  %A")
-    if currentDT.day < 10:
-        fulldate = fulldate[1:]
+    if currentDT.hour < 23:
+        time.sleep(0.05)
+        scrollColour = BLUE
+        fulldate = currentDT.strftime("%d-%m-%y  %A")
+        if currentDT.day < 10:
+            fulldate = fulldate[1:]
+    else:
+        time.sleep(0.025)
+        scrollColour = PURPLE
+        fulldate = "GO HOME!!!"
 
     sizeofdate = len(fulldate)*7
 
@@ -80,8 +87,8 @@ while(1):
 
     pmam = currentDT.strftime("%p")
 
-    graphics.DrawText(MyOffsetCanvas, fonts['7x13B'], scroller, 28, BLUE,
-                      fulldate)
+    graphics.DrawText(MyOffsetCanvas, fonts['7x13B'], scroller, 28,
+                      scrollColour, fulldate)
 
     graphics.DrawText(MyOffsetCanvas, fonts['9x18B'], sizeoftime, 14, RED,
                       thetime)
@@ -90,4 +97,3 @@ while(1):
 
     MyOffsetCanvas = MyMatrix.SwapOnVSync(MyOffsetCanvas)
     MyOffsetCanvas.Clear()
-    time.sleep(0.05)
